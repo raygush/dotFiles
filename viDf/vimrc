@@ -1,0 +1,98 @@
+" vundle start
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+
+"customized vundles start 
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+
+
+"customized vundles end
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+" vundle end
+" ------------------
+"  normal vi setting start
+
+set number
+set showcmd
+set cursorline
+set wildmenu
+set showmatch
+set incsearch
+set hlsearch
+set clipboard=unnamedplus
+
+" airline setting
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_left_sep='>'
+
+
+"syntatic setting
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+" nomal vi setting end
+"---------------------------
+" netrw setting start
+
+let g:netrw_liststyle=3
+
+
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+
+
+
+
+" Hit enter in the file browser to open the selected
+" file with :vsplit to the right of the browser.
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+
+" Change directory to the current buffer when opening files.
+set autochdir
+
+
+" netrw setting end
+" -----------------
+
+
+
