@@ -86,7 +86,7 @@ fi
 
 # some more ls aliases
 #alias ll='ls -alF'
-alias ll='ls -tlF'
+alias ll='ls -htlF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -127,9 +127,13 @@ export XILINX_HOST=/opt/Xilinx/SDK/2014.2
 
 #HMI env variable setting end
 
+#Adding /home/ray/bin to $PATH
+export PATH=/home/ray/bin:$PATH
+
 
 #Added by ray start
 alias rm="rm -i"
 
+export TERM=xterm-256color
 
 #Added by ray end
