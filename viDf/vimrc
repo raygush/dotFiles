@@ -8,12 +8,46 @@ call vundle#begin()
 
 "customized vundles start 
 
-Plugin 'scrooloose/nerdtree'
+
+Plugin 'gmarik/Vundle.vim'
+
+
+"Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
+Plugin 'mustache/vim-mustache-handlebars'
+
+"Plugin 'pangloss/vim-javascript'
+
+
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tomasr/molokai'
+"Plugin 'Lokaltog/vim-distinguished'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'marijnh/tern_for_vim'
+
+Plugin 'Lokaltog/vim-easymotion'
+
+Plugin 'tpope/vim-surround'
+
+Plugin 'majutsushi/tagbar'
+
+
+"Plugin 'nathanaelkane/vim-indent-guides'
+
+Plugin 'othree/html5.vim'
+
+"Plugin 'flazz/vim-colorschemes'
+
+Plugin 'Yggdroot/indentLine'
+
+
+
 
 
 "customized vundles end
@@ -23,15 +57,61 @@ filetype plugin indent on    " required
 " vundle end
 " ------------------
 "  normal vi setting start
+"
+
+"gvim setting
+set guioptions-=T
+set guioptions-=r
+set guifont=Monospace\ 11
+if has("gui_running")
+	set lines=999 columns=999
+endif
+
+
+"set filetype='on'
+
+set history=1000
+
+set undolevels=1000
+
+set wildignore=*.swp,*.class,*.pyc
+
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 set number
+
 set showcmd
+
 set cursorline
+
 set wildmenu
+
 set showmatch
+
 set incsearch
 set hlsearch
+
 set clipboard=unnamedplus
+
+set t_Co=256
+"colorscheme molokai
+"colorscheme distinguished
+
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+"let g:solarized_contrast='high'
+colorscheme solarized
+
+
+"vim-javascript config
+"let g:javascript_enable_domhtmlcss=1
+
+
+
 
 " airline setting
 let g:airline#extensions#tabline#enabled = 1
@@ -40,7 +120,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_left_sep='>'
 
 
-"syntatic setting
+"syntatic setting for eslint start
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -49,6 +129,74 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_checkers = ['jshint']
+
+let g:syntastic_html_tidy_exec = 'tidy5'
+let g:syntastic_html_tidy_ignore_errors = [
+    \  'plain text isn''t allowed in <head> elements',
+    \  '<base> escaping malformed URI reference',
+    \  'discarding unexpected <body>',
+    \  '<script> escaping malformed URI reference',
+    \  '</head> isn''t allowed in <body> elements'
+    \ ]
+
+
+"syntatic setting for eslint end
+
+"tern setting start
+let g:tern_show_argument_hints='on_move'
+let g:tern_show_signature_in_pum=1
+
+
+
+"tern setting end 
+
+
+"indent-guid conf start
+"if it is dark background
+"hi IndentGuidesOdd  ctermbg=black
+"hi IndentGuidesEven ctermbg=darkgrey
+
+"let g:indent_guides_auto_colors = 1
+"let g:indent_guides_color_change_percent = 70 
+"let g:indent_guides_start_level= 2
+"let g:indent_guides_guide_size = 1
+
+
+"let g:indent_guides_space_guides = 0
+
+"indent-guid conf end 
+
+"html5.vim start
+
+let g:html5_event_handler_attributes_complete = 1
+let g:html5_rdfa_attributes_complete = 1
+let g:html5_microdata_attributes_complete = 1
+let g:html5_aria_attributes_complete = 1
+
+"html5.vim end
+
+"molokai_config start
+
+"let g:molokai_original = 0
+"let g:rehash256 = 1
+
+"molokai_config end
+
+
+
+"indentLine start
+
+let g:indentLine_color_term = 239
+let g:indentLine_char = '¦'
+let g:indentLine_enabled = 1
+
+
+"indentLine start
+
+
 
 
 " nomal vi setting end
